@@ -1,1 +1,1 @@
-# vimal-java-developer.github.io
+# vimal-java-dev.github.io
