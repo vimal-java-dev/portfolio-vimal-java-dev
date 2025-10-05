@@ -1,95 +1,315 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-	<link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tech Stack Dashboard</title>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
 	<style>
-		table,
-		th,
-		td {
-			border: 1px solid black;
+		:root {
+			--accent: #ffd700;
+			--accent-light: #ffe88b;
+			--bg-dark: #1f1f1f;
+			--bg-mid: #333;
+			--highlight: #00b4d8;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
 		}
 
 		body {
-			font-family: 'Ubuntu';
-			font-size: 20px;
-			text-shadow: yellow 1px 0 10px;
+			font-family: 'Ubuntu', sans-serif;
+			background: linear-gradient(135deg, var(--bg-dark), var(--bg-mid));
+			color: #f0f0f0;
+			line-height: 1.6;
+			overflow-x: hidden;
+		}
+
+		header {
+			background-color: #6a3800;
+			text-align: center;
+			padding: 35px 15px;
+			color: #fff;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+			animation: fadeDown 1s ease;
+		}
+
+		header h1 {
+			text-decoration: underline wavy var(--accent);
+			letter-spacing: 1px;
+			font-size: 2rem;
+		}
+
+		/* Section Titles */
+		h2 {
+			color: var(--accent);
+			text-align: center;
+			margin: 50px 0 20px;
+			letter-spacing: 1px;
+			text-decoration: underline wavy var(--accent);
+			animation: fadeIn 1.2s ease;
+		}
+
+		/* Card Grid Layout */
+		.card-container {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 25px;
+			width: 90%;
+			margin: 0 auto;
+			animation: slideUp 1.2s ease;
+		}
+
+		.card {
+			background: rgba(255, 255, 255, 0.08);
+			border-radius: 15px;
+			padding: 25px;
+			box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+			backdrop-filter: blur(6px);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
 			text-align: center;
 		}
 
-		a {
-			color: black;
+		.card:hover {
+			transform: translateY(-8px);
+			box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
 		}
 
-		a:hover {
-			color: blue;
+		.card h3 {
+			color: var(--accent-light);
+			font-size: 1.3rem;
+			margin-bottom: 10px;
+		}
+
+		.card p {
+			color: #ddd;
+			font-size: 1rem;
+		}
+
+		.card ul {
+			list-style: none;
+			padding: 0;
+			margin-top: 10px;
+		}
+
+		.card ul li {
+			padding: 5px 0;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+		}
+
+		/* GitHub Links Section */
+		.links {
+			text-align: center;
+			font-size: 1.2rem;
+			margin: 60px 0;
+			animation: fadeIn 1.2s ease;
+		}
+
+		.links a {
+			color: var(--accent);
+			text-decoration: none;
+			font-weight: 600;
+			transition: color 0.3s ease;
+		}
+
+		.links a:hover {
+			color: var(--highlight);
+		}
+
+		.links hr {
+			width: 60%;
+			border: 0;
+			height: 1px;
+			background: linear-gradient(to right, transparent, var(--accent), transparent);
+			margin: 25px auto;
+		}
+
+		footer {
+			background-color: #6a3800;
+			color: white;
+			text-align: center;
+			padding: 25px;
+			font-size: 1rem;
+			box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+			animation: fadeUp 1s ease;
+		}
+
+		footer a {
+			color: var(--accent);
+			font-weight: bold;
+		}
+
+		footer p {
+			margin-top: 10px;
+			font-size: 0.9rem;
+			color: #ccc;
+		}
+
+		/* Animations */
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes fadeDown {
+			from {
+				transform: translateY(-40px);
+				opacity: 0;
+			}
+
+			to {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
+
+		@keyframes fadeUp {
+			from {
+				transform: translateY(40px);
+				opacity: 0;
+			}
+
+			to {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
+
+		@keyframes slideUp {
+			from {
+				transform: translateY(60px);
+				opacity: 0;
+			}
+
+			to {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
+
+		/* Responsive */
+		@media (max-width: 600px) {
+			header h1 {
+				font-size: 1.5rem;
+			}
+
+			.card h3 {
+				font-size: 1.2rem;
+			}
+
+			.card p {
+				font-size: 0.95rem;
+			}
+
+			.links hr {
+				width: 80%;
+			}
+
+			footer {
+				font-size: 0.9rem;
+			}
 		}
 	</style>
 </head>
 
-<body style="background-color:Gray;">
+<body>
+	<header>
+		<h1>Welcome To The Dashboard of Tech Stack</h1>
+	</header>
 
-	<header style="background-color:rgb(104, 52, 3); padding-block: 10px;">
-		<h1>
-			<center style="text-decoration: wavy underline;">Welcome To The Dashboard of Tech Stack</center>
-		</h1>
-	</header><br>
+	<!-- Tech Stack Cards -->
+	<h2>💻 Tech Stack Overview</h2>
+	<div class="card-container">
+		<div class="card">
+			<h3>Profession</h3>
+			<ul>
+				<li>Java Developer</li>
+				<li>(BE-IT)</li>
+			</ul>
+		</div>
 
-	<table style="width:100%">
-		<tr>
-			<th>Profession</th>
-			<th>Backend</th>
-			<th>DB(Developer tool-Workspace)</th>
-			<th>Front-End</th>
-		</tr>
-		<tr>
-			<td>Java Developer</td>
-			<td>Java, Spring Boot, Web Services</td>
-			<td>SQL(Oracle, MySQL, PostgreSQL)</td>
-			<td>ReactJS</td>
-		</tr>
-		<tr>
-			<td>(BE-IT)</td>
-			<td>Microservices, Docker</td>
-			<td>NoSQL(MongoDB, Cassandra)</td>
-			<td>AngularJS</td>
-		</tr>
-	</table>
+		<div class="card">
+			<h3>Backend</h3>
+			<ul>
+				<li>Java, Spring Boot, Web Services</li>
+				<li>Microservices, Docker</li>
+			</ul>
+		</div>
 
-	<h2 style="background-color:rgb(104, 52, 3); padding-block: 10px; text-align: center; text-decoration: wavy underline;">
-		&#9654; Design Overview &#9664;
-	</h2>
+		<div class="card">
+			<h3>Database / Workspace</h3>
+			<ul>
+				<li>SQL (Oracle, MySQL, PostgreSQL)</li>
+				<li>NoSQL (MongoDB, Cassandra)</li>
+			</ul>
+		</div>
 
-	<table style="width:100%">
-		<tr>
-			<th>System Design</th>
-			<td>Low-level design</td>
-			<td>High-level design</td>
-		</tr>
-		<tr>
-			<th>Design Patterns</th>
-			<td>DAO</td>
-			<td>Singleton</td>
-		</tr>
-		<tr>
-			<th>Core Subjects</th>
-			<td>J2SE</td>
-			<td>J2EE</td>
-		</tr>
-		<tr>
-			<th>API Tools</th>
-			<td>Postman</td>
-			<td>Swagger</td>
-		</tr>
-		<tr>
-			<th>Field Subjects</th>
-			<td>DCN, DBMS, OOADU</td>
-			<td>OS, DFS, DAA</td>
-		</tr>
-	</table>
+		<div class="card">
+			<h3>Front-End</h3>
+			<ul>
+				<li>ReactJS</li>
+				<li>AngularJS</li>
+			</ul>
+		</div>
+	</div>
 
-	<div style="margin-top:50px; margin-bottom: 50px; text-align: center; font-size: 30px;">
-		<hr><a href="https://github.com/vimal-java-dev/" target="_blank">GitHub link-1</a>
+	<!-- Design Section -->
+	<h2>🧩 Design Overview</h2>
+	<div class="card-container">
+		<div class="card">
+			<h3>System Design</h3>
+			<ul>
+				<li>Low-level design</li>
+				<li>High-level design</li>
+			</ul>
+		</div>
+
+		<div class="card">
+			<h3>Design Patterns</h3>
+			<ul>
+				<li>DAO</li>
+				<li>Singleton</li>
+			</ul>
+		</div>
+
+		<div class="card">
+			<h3>Core Subjects</h3>
+			<ul>
+				<li>J2SE</li>
+				<li>J2EE</li>
+			</ul>
+		</div>
+
+		<div class="card">
+			<h3>API Tools</h3>
+			<ul>
+				<li>Postman</li>
+				<li>Swagger</li>
+			</ul>
+		</div>
+
+		<div class="card">
+			<h3>Field Subjects</h3>
+			<ul>
+				<li>DCN, DBMS, OOADU</li>
+				<li>OS, DFS, DAA</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- GitHub Links -->
+	<div class="links">
+		<hr>
+		<a href="https://github.com/vimal-java-dev/" target="_blank">GitHub link-1</a>
 		<hr>
 		<a href="https://github.com/vimal-tech-dev/" target="_blank">GitHub link-2</a>
 		<hr>
@@ -97,10 +317,8 @@
 		<hr>
 	</div>
 
-	<footer style="background-color:rgb(104, 52, 3); padding-block: 10px; text-align: center;">
-		<b>
-			<a href="https://vimaltech.dev/">GO BACK &nbsp; : &nbsp; &#8617; &nbsp; VIMAL TECH HOME PAGE</a>
-		</b>
+	<footer>
+		<b><a href="https://vimaltech.dev/">&#8617; GO BACK : VIMAL TECH HOME PAGE</a></b>
 		<p>&#9400; 23-Sept-2023</p>
 	</footer>
 </body>
